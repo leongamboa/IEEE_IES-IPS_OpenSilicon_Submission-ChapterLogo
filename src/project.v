@@ -100,7 +100,8 @@ module tt_um_leongamboa_OpenSilicon_SubmissionChapterLogo (
     // Relative absolute distances for the Circle (avoids signed multiplier overflow)
     wire [10:0] abs_dx = (hpos > logo_cx) ? (hpos - logo_cx) : (logo_cx - hpos);
     wire [10:0] abs_dy = (vpos > logo_cy) ? (vpos - logo_cy) : (logo_cy - vpos);
-    wire in_circle = ((abs_dx * abs_dx) + (abs_dy * abs_dy)) < 24'd10000;
+    wire in_circle = (abs_dx < 11'd90) && (abs_dy < 11'd90) &&
+                 (abs_dx + abs_dy < 11'd127);
 
 
     // Signed distances for the Text (allows left/right/up/down logic)
