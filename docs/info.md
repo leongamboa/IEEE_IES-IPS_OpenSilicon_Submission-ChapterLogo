@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+Generates the IEEE logo bouncing around in the space. The color of the logo can also freely be changed by the user with the push of a button
 
 ## How to test
 
-Explain how to use your project
+Simply run it and press the button to change the color.
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+No external hardware was used. All that is needed hardware-wise is a laptop to run and display the output.
