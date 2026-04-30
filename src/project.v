@@ -64,7 +64,7 @@ module tt_um_leongamboa_OpenSilicon_SubmissionChapterLogo (
     // 3. BOUNCING LOGIC
     // ==========================================
     reg [9:0] logo_cx;
-    reg [9:0] logo_cy;
+    reg [8:0] logo_cy;
     reg dir_x, dir_y;
 
     always @(posedge clk) begin
@@ -100,7 +100,8 @@ module tt_um_leongamboa_OpenSilicon_SubmissionChapterLogo (
     // Relative absolute distances for the Circle (avoids signed multiplier overflow)
     wire [10:0] abs_dx = (hpos > logo_cx) ? (hpos - logo_cx) : (logo_cx - hpos);
     wire [10:0] abs_dy = (vpos > logo_cy) ? (vpos - logo_cy) : (logo_cy - vpos);
-    wire in_circle = ((abs_dx * abs_dx) + (abs_dy * abs_dy)) < 24'd10000;
+    wire in_circle = (abs_dx < 11'd90) && (abs_dy < 11'd90) &&
+                 (abs_dx + abs_dy < 11'd127);
 
     // Signed distances for the Text (allows left/right/up/down logic)
     wire signed [11:0] dx = $signed({2'b00, hpos}) - $signed({2'b00, logo_cx});
@@ -158,10 +159,9 @@ module tt_um_leongamboa_OpenSilicon_SubmissionChapterLogo (
         end else if (is_logo_pixel) begin
             case (color_state)
                 2'd0: begin R = 2'b11; G = 2'b10; B = 2'b00; end // Orange
-                default: begin R = 2'b00; G = 2'b01; B = 2'b11; end
-                // 2'd1: begin R = 2'b00; G = 2'b01; B = 2'b11; end Blue
-                // 2'd2: begin R = 2'b00; G = 2'b00; B = 2'b00; end  Black
-                // 2'd3: begin R = 2'b11; G = 2'b11; B = 2'b11; end  White
+                2'd1: begin R = 2'b00; G = 2'b01; B = 2'b11; end // Blue
+                2'd2: begin R = 2'b00; G = 2'b00; B = 2'b00; end //Black
+                2'd3: begin R = 2'b11; G = 2'b11; B = 2'b11; end // White
             endcase
         end else begin
             R = 2'b01; G = 2'b01; B = 2'b01; // Grey Background
@@ -178,7 +178,6 @@ module tt_um_leongamboa_OpenSilicon_SubmissionChapterLogo (
     wire _unused_ok = &{ena, ui_in[7], ui_in[3:0], uio_in, gp_present, gp_b, gp_y, gp_select, gp_start, gp_up, gp_down, gp_left, gp_right, gp_x, gp_l, gp_r};
 
 endmodule
-
 // =========================================================
 // GAMEPAD PMOD MODULES 
 // =========================================================
