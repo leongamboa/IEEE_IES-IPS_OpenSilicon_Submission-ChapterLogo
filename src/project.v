@@ -159,8 +159,9 @@ module tt_um_leongamboa_OpenSilicon_SubmissionChapterLogo (
             case (color_state)
                 2'd0: begin R = 2'b11; G = 2'b10; B = 2'b00; end // Orange
                 2'd1: begin R = 2'b00; G = 2'b01; B = 2'b11; end // Blue
+                default: begin R = 2'b00; G = 2'b00; B = 2'b00;
                 // 2'd2: begin R = 2'b00; G = 2'b00; B = 2'b00; end  Black
-                2'd3: begin R = 2'b11; G = 2'b11; B = 2'b11; end // White
+                // 2'd3: begin R = 2'b11; G = 2'b11; B = 2'b11; end  White
             endcase
         end else begin
             R = 2'b01; G = 2'b01; B = 2'b01; // Grey Background
