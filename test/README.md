@@ -1,7 +1,5 @@
-# Sample testbench for a Tiny Tapeout project
-
-This is a sample testbench for a Tiny Tapeout project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
-See below to get started or for more information, check the [website](https://tinytapeout.com/hdl/testing/).
+# IEEE IES - IPS: Open Silicon IC Design Workshop 2026 - Verilog Design Submission
+This repository contains the proper template and format for IC fabrication by Tiny Tapeout. The verilog code generates a moving IEEE logo that bounces at the edges of the screen. The color of the logo itself can also be changed during runtime by the user by pressing space and then clicking the key "_a"_
 
 ## Setting up
 
